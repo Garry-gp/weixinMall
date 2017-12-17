@@ -1,0 +1,57 @@
+<view>
+  <view class="header">
+        <image src="{{thumb}}" class="thumb"></image>
+        <text class="nickname">{{nickname}}</text>
+        <text class="about" bindtap="about">关于我们</text>
+    </view>
+    <view class="install-box c1">
+        <view class="install-manage">
+            <navigator url="">个人设置</navigator>
+        </view>
+    </view>   
+</view>
+
+<!--底部菜单-->
+<view class="page">
+  <view class="sc df bte">
+    <navigator class="df_1" url="../orders/orders?status=1" hover-class="none" >
+      <view class="conten"><image src="/images/dfk.png"></image></view>
+      <text class="font_14">待付款<text style="color:red">({{order.length}})</text></text>
+    </navigator>
+  <!-- <navigator class="df_1" url="../user/dingdan" hover-class="none" >
+    <view><image src="/images/dfh.png"></image>{{orderInfo.HasSum}}</view>
+      <text class="font_14">待发货</text>      
+    </navigator> -->
+
+    <navigator class="df_1" url="../user/dingdan?currentTab=3&otype=finish" hover-class="none" >
+        <view class="conten"><image src="/images/dsh.png"></image></view>
+        <text  class="font_14">已发货<text style="color:red">({{orderInfo.finish_num}})</text></text>
+    </navigator>
+
+    <navigator class="df_1" url="../user/dingdan?currentTab=2&otype=receive" hover-class="none" >
+        <view class="conten"><image src="/images/dpl.png"></image></view>
+        <text class="font_14">待收货<text style="color:red">({{orderInfo.rec_num}})</text></text>
+    </navigator>
+
+    <navigator class="df_1" url="../user/dingdan?currentTab=4" hover-class="none" >
+      <view class="conten"><image src="/images/tksh.png"></image></view>
+      <text class="font_14">已完成<text style="color:red">({{orderInfo.refund_num}})</text></text>
+    </navigator>
+  </view>
+  
+  <view class="install-box font_14">
+    <view class="install-manage">
+       <navigator url="../install/install">地址设置</navigator>
+    </view>
+  </view>   
+  <view class="install-box font_14">
+    <view class="install-manage">
+       <navigator url="">优惠券</navigator>
+    </view>
+  </view>
+  <view class="install-box font_14">
+    <view class="install-manage">
+       <navigator url="http://www.baidu.com">联系客服</navigator>
+    </view>
+  </view>
+</view>

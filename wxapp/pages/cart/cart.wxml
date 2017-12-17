@@ -1,0 +1,66 @@
+<view style="{padding:0rpx;margin:0rpx;}"> 
+  <form bindsubmit="formSubmit" bindreset="formReset" >
+  <!--list-->
+  <view class="nav_section" >
+    <view wx:if="{{cart.length}}">
+   
+        <block wx:for="{{cart}}" wx:key="item.id">
+        <checkbox-group bindchange="checkboxChange" data-id="{{item.id}}">
+            <view class="nav_section_items" >
+              <view data-aid="{{item.id}}">
+                <checkbox value="{{item.productName}}" class="section_book" checked="{{item.status == '1' ?'true':''}}"/>
+              </view>
+                <!--image-->
+                <view class="section_image">
+                <block wx:if="{{item.product.image}}">
+                    <image src="data:image/jpeg;base64,{{item.product.image}}" mode="aspectFill"></image>
+                </block>
+                <block wx:else>
+                    <image src="../../images/default_pic.png" mode="aspectFill"></image>
+                </block>
+                </view>
+                <!--content-->
+                <view class="section_cont"  data-aid="{{item.id}}">
+                    <view class="section_cont_sub" data-id="{{item.product_id}}" bindtap="navigateDetail">
+                        <text>{{item.productName}}</text>
+                    </view>
+                    <view class="good-price">  
+                      <text class="price">￥{{item.productPrice}}</text>  
+                      <view class="btn-box">  
+                          <view class="btn">  
+                            <button disabled="{{item.productCount=='1'?'true':''}}" id="del{{index}}" type="default" size="mini"  data-id="{{item.id}}" bindtap="delCount" data-count="{{item.productCount}}">-</button>  
+                            <input disabled='false' value="{{item.productCount}}" maxlength="2"/>  
+                            <button disabled="{{item.productCount=='10'?'true':''}}" id="add{{index}}" type="default" data-id="{{item.id}}" size="mini" bindtap="addCount" data-count="{{item.productCount}}">+</button>  
+                        </view>
+                        <image src="../../images/de12.png" bindtap="deleteShop" data-id="{{item.id}}"></image>  
+                        
+                      </view>  
+                    </view>  
+                </view>
+                <!--book-->
+            </view>
+          </checkbox-group>
+        </block> 
+    </view>
+    <view wx:else>
+          <view class="container">
+          <view  wx:if="{{item.id!=null}}">
+            <view class="classname"></view>
+          </view>
+          <view wx:else bindtap="navigateIndex" class="section_shopping">
+            <text>里面空空如也！去逛逛吧</text>
+          </view>
+      </view>
+    </view>
+  </view>
+  </form>
+</view>
+<!--底部-->
+<view class="carts-footer">
+   <view bindtap="bindSelectAll">
+       <icon  type="{{selectedAllStatus==1?'success_circle':'circle'}}" size="24" />
+        <text>全选--</text>
+        <text class="reds">总金额:{{total}}</text>
+   </view>
+       <view class="button" data-total="{{total}}" data-name="{{cart}}" bindtap='bindCheckout'>立即结算</view>
+</view>
